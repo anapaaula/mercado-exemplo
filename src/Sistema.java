@@ -1,6 +1,5 @@
-import java.util.List;
-
 import exemplo.Lote;
+import exemplo.LoteRepository;
 import exemplo.Produto;
 import exemplo.ProdutoRepository;
 
@@ -9,12 +8,6 @@ public class Sistema {
 	public static void main(String[] args) {
 		
 		Produto leite = new Produto("Leite", "Parmalat");
-		Lote lote = new Lote(leite, 10L);
-		
-		System.out.println(leite);
-		System.out.println(lote);
-		
-		
 		Produto pao = new Produto("Pão", "Padaria dois irmãos");
 		Produto ovos = new Produto("Ovos", "Distribuidora dois irmãos");
 		
@@ -23,20 +16,22 @@ public class Sistema {
 		
 		catalogo.addProduto(ovos);	
 		catalogo.addProduto(leite);
+		catalogo.atualizarProduto(catalogo.addProduto(pao), "paozinho" , "ana paula");
+		catalogo.recuperarProduto(pao.getId());
+		catalogo.removerProduto(pao.getId());
+		System.out.println(catalogo.listarProdutos());
 		
-		System.out.println(catalogo.atualizarProduto(catalogo.addProduto(pao), "paozinho" , "ana paula"));
+		Lote loteLeite = new Lote(leite, 10L);
+		Lote lotePao = new Lote(pao, 89L);
+		Lote loteOvo = new Lote(ovos, 30L);
 		
-		System.out.println(catalogo.recuperarProduto(pao.getId()));
-		System.out.println(catalogo.removerProduto(pao.getId()));
+		LoteRepository lotes = new LoteRepository();
 		
-		List<Produto> lista = catalogo.listarProdutos();
-		
-		for (int i = 0; i < lista.size(); i++) {
-			System.out.println(lista.get(i));
-			
-		}
-		
-		
+		lotes.addLote(loteLeite);
+		lotes.addLote(lotePao);
+		lotes.recuperarLote(lotes.addLote(loteOvo));
+		lotes.removerLote(loteLeite.getId());
+		System.out.println(lotes.listarLotes());
 		
 		
 	}

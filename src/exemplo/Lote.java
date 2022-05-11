@@ -13,7 +13,7 @@ public class Lote {
 	private Date dataFabricacao;
 	
 	private Date dataValidade; 
-	
+
 	public Lote(Produto produto, Long quantidade) {
 		
 		this.id = UUID.randomUUID().toString();
@@ -39,6 +39,18 @@ public class Lote {
 
 	public Date getDataValidade() {
 		return dataValidade;
+	}
+	
+	public void setQuantidade(Long quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setDataFabricacao(Date dataFabricacao) {
+		this.dataFabricacao = dataFabricacao;
+	}
+
+	public void setDataValidade(Date dataValidade) {
+		this.dataValidade = dataValidade;
 	}
 
 	public String toString() {

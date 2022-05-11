@@ -1,51 +1,52 @@
 package exemplo;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Map;
 
 public class ProdutoRepository {
 	
-	private Map<String, Produto> catalogo = new HashMap<String, Produto>();
+	private Map<String, Produto> catalogo;
+	
+	
+	public ProdutoRepository() {
+		this.catalogo = new HashMap<String, Produto>();
+		
+	}
 	
 	public String addProduto(Produto produto) {
-		catalogo.put(produto.getId(), produto);
+		this.catalogo.put(produto.getId(), produto);
 		return produto.getId();
 		
 	}
 	
-	public boolean atualizarProduto(String ID, String nome, String fabricante) {
-		catalogo.get(ID).setNome(nome);
-		catalogo.get(ID).setFabricante(fabricante);
+	public void atualizarProduto(String ID, String nome, String fabricante) {
+		Produto produto = this.recuperarProduto(ID);
 		
-		return true;
+		produto.setNome(nome);
+		produto.setFabricante(fabricante);
+		
 	}
 	
-	public boolean removerProduto(String ID) {
-		catalogo.remove(ID);
+	public void removerProduto(String ID) {
+		this.catalogo.remove(ID);
 		
-		return true;
 	}
 	
 	public Produto recuperarProduto(String ID) {
-		return catalogo.get(ID);
+		return this.catalogo.get(ID);
 		
 	}
 	
-	public List<Produto> listarProdutos() {
-		List<Produto> listaProdutos = new LinkedList<Produto>();
+	public String listarProdutos() {
+		String listaProdutos = new String();
+	    
+		for (Produto produto : this.catalogo.values()) {
+	        listaProdutos += produto.toString() + "\n";
+	    }
 		
-		for(Produto produto: catalogo.values()) {
-			listaProdutos.add(produto);
-		}
-		
-		return listaProdutos;
-		
+	    return listaProdutos;
 	}
-	
-	
-	
 	
 
 }
