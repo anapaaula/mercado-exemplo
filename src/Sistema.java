@@ -1,3 +1,5 @@
+import java.util.List;
+
 import exemplo.Lote;
 import exemplo.LoteRepository;
 import exemplo.Produto;
@@ -32,6 +34,17 @@ public class Sistema {
 		lotes.recuperarLote(lotes.addLote(loteOvo));
 		lotes.removerLote(loteLeite.getId());
 		System.out.println(lotes.listarLotes());
+		
+		//System.out.println(catalogo.listarProdutosPeloNome("Leite"));
+		Produto leiteEmPo = new Produto("Leite em pó", "ninho");
+		
+		catalogo.addProduto(leiteEmPo);
+		
+		List<Produto> oi = catalogo.listarProdutosPeloNome("leite");
+		System.out.println(oi);
+		
+		
+		
 		
 		
 	}

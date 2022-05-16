@@ -1,7 +1,8 @@
 package exemplo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 public class ProdutoRepository {
@@ -38,14 +39,27 @@ public class ProdutoRepository {
 		
 	}
 	
-	public String listarProdutos() {
-		String listaProdutos = new String();
+	public List<Produto> getAll() {
+		List<Produto> listProds = new ArrayList<Produto>();
 	    
 		for (Produto produto : this.catalogo.values()) {
-	        listaProdutos += produto.toString() + "\n";
+	        listProds.add(produto);
 	    }
 		
-	    return listaProdutos;
+	    return listProds;
+	}
+	    
+
+	
+	public List<Produto> getProductfromName(String name) {
+		List<Produto> products = new ArrayList<Produto>();
+	    
+		for (Produto product : this.catalogo.values()) {
+			if(product.getNome().toLowerCase().contains(name.toLowerCase()))
+	        products.add(product);
+	    }
+		
+	    return products;
 	}
 	
 

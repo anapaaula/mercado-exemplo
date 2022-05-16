@@ -1,7 +1,9 @@
 package exemplo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoteRepository {
@@ -38,16 +40,17 @@ public class LoteRepository {
 		
 	}
 	
-	public String listarLotes() {
-		String listaLotes = new String();
+	public List<Lote> getAll() {
+		List<Lote> listaLotes = new ArrayList<Lote>();
         
 		for (Lote lote : this.lotes.values()) {
-            listaLotes += lote.toString() + "\n";
+            listaLotes.add(lote);
         }
 		
         return listaLotes;
     	
 	}
+	
 	
 
 }
