@@ -1,10 +1,10 @@
-package exemplo;
+package models;
 import java.util.Date;
 import java.util.UUID;
 
 public class Lote {
 	
-	private String id;
+private String id;
 	
 	private Produto produto;
 	
@@ -13,7 +13,7 @@ public class Lote {
 	private Date dataFabricacao;
 	
 	private Date dataValidade; 
-
+	
 	public Lote(Produto produto, Long quantidade) {
 		
 		this.id = UUID.randomUUID().toString();
@@ -40,7 +40,11 @@ public class Lote {
 	public Date getDataValidade() {
 		return dataValidade;
 	}
-	
+
+	public String toString() {
+		return "Lote ID: " + getId() + " - Produto: " + getProduto().getNome() + " - " + getQuantidade() + " itens";
+	}
+
 	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
@@ -53,7 +57,5 @@ public class Lote {
 		this.dataValidade = dataValidade;
 	}
 
-	public String toString() {
-		return "Lote ID: " + getId() + " - Produto: " + getProduto().getNome() + " - " + getQuantidade() + " itens";
-	}
+	
 }

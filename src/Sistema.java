@@ -1,51 +1,39 @@
 import java.util.List;
 
-import exemplo.Lote;
-import exemplo.LoteRepository;
-import exemplo.Produto;
-import exemplo.ProdutoRepository;
+import models.Lote;
+import models.Produto;
+import repositories.LoteRepository;
+import repositories.ProdutoRepository;
+import services.LoteService;
+import services.ProdutoService;
 
 public class Sistema {
-
+	private static LoteRepository loteRep = new LoteRepository();
+	private static ProdutoRepository prodRep = new ProdutoRepository();
+	private static LoteService loteService = new LoteService(loteRep);
+	private static ProdutoService prodService = new ProdutoService(loteRep, prodRep);
+	 
 	public static void main(String[] args) {
 		
-		Produto leite = new Produto("Leite", "Parmalat");
-		Produto pao = new Produto("Pão", "Padaria dois irmãos");
-		Produto ovos = new Produto("Ovos", "Distribuidora dois irmãos");
+		Produto p1 = new Produto("Leite", "Parmalat", 10.5);
+		Produto p2 = new Produto("Leite integral", "Vale", 6.5);
+
+		Lote l1 = new Lote(p1, 10L);
+				
+		// Adicionando produtos no catálogo		
+		prodService.addProduto(p1);
+		prodService.addProduto(p2);
 		
-		ProdutoRepository catalogo = new ProdutoRepository();
+		// Adicionando lotes no catálogo
+		loteService.addLote(l1);
 		
+		// Consulta de produto "leite" no catálogo de produto
+		List<Produto> selection = prodService.listarProdByName("leite");
+		System.out.println(selection);
 		
-		catalogo.addProduto(ovos);	
-		catalogo.addProduto(leite);
-		catalogo.atualizarProduto(catalogo.addProduto(pao), "paozinho" , "ana paula");
-		catalogo.recuperarProduto(pao.getId());
-		catalogo.removerProduto(pao.getId());
-		System.out.println(catalogo.listarProdutos());
-		
-		Lote loteLeite = new Lote(leite, 10L);
-		Lote lotePao = new Lote(pao, 89L);
-		Lote loteOvo = new Lote(ovos, 30L);
-		
-		LoteRepository lotes = new LoteRepository();
-		
-		lotes.addLote(loteLeite);
-		lotes.addLote(lotePao);
-		lotes.recuperarLote(lotes.addLote(loteOvo));
-		lotes.removerLote(loteLeite.getId());
-		System.out.println(lotes.listarLotes());
-		
-		//System.out.println(catalogo.listarProdutosPeloNome("Leite"));
-		Produto leiteEmPo = new Produto("Leite em pó", "ninho");
-		
-		catalogo.addProduto(leiteEmPo);
-		
-		List<Produto> oi = catalogo.listarProdutosPeloNome("leite");
-		System.out.println(oi);
-		
-		
-		
-		
-		
+		// Consulta de produto "leite" no catálogo de produto com lotes no sistema
+		List<Produto> selectionWithLote = prodService.listarProdsLoteByName("leite");
+		System.out.println(selectionWithLote);
 	}
+	
 }

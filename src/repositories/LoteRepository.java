@@ -1,10 +1,12 @@
-package exemplo;
+package repositories;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import models.Lote;
 
 public class LoteRepository {
 	
@@ -13,7 +15,6 @@ public class LoteRepository {
 	public LoteRepository() {
         this.lotes = new HashMap<String, Lote>();
     }
-	
 	
 	public String addLote(Lote lote) {
 		this.lotes.put(lote.getId(), lote);

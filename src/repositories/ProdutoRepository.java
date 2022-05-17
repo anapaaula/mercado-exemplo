@@ -1,9 +1,11 @@
-package exemplo;
+package repositories;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import models.Produto;
 
 public class ProdutoRepository {
 	
@@ -49,17 +51,16 @@ public class ProdutoRepository {
 	    return listProds;
 	}
 	    
-
 	
-	public List<Produto> getProductfromName(String name) {
-		List<Produto> products = new ArrayList<Produto>();
+	public List<Produto> getProdsfromName(String nome) {
+		List<Produto> produtos = new ArrayList<Produto>();
 	    
-		for (Produto product : this.catalogo.values()) {
-			if(product.getNome().toLowerCase().contains(name.toLowerCase()))
-	        products.add(product);
+		for (Produto produto : this.catalogo.values()) {
+			if(produto.getNome().toLowerCase().contains(nome.toLowerCase()))
+	        produtos.add(produto);
 	    }
 		
-	    return products;
+	    return produtos;
 	}
 	
 
